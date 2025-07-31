@@ -1,6 +1,44 @@
 from collections.abc import Iterable
 
 
+"""
+グローバルでデータ管理することを想定としたデータ管理クラス
+
+使用用途
+- 再利用率の高いデータをコンテキスト管理したいとき
+- DBから毎回データを取得したくないとき
+
+サンプルコード
+
+```py
+ctx = DataContext()
+def main():
+    # グローバルで初期化した場合はここで動的確保データをリセットすることを推奨
+    ctx.deinit()
+    
+    # DBからデータを取得することを想定しているので
+    # ctx は List[Dict[...]] や Dict[...] のような後続のデータを想定
+    data_A = [{"column_A": "hoge", ...}{...}] # もしくは {"column_A": "hoge", ...}
+    
+    # コンテキストにセット
+    ctx.set("data_A", data_A)
+
+    # find
+    column = (column_A,)
+    value = ("hoge",)
+    record = ctx.find(ctx.get("data_A"), column, value)
+    print(record) # {"column_A": "hoge", ...}
+
+    # filter
+    column = (column_A,)
+    value = ("hoge",)
+    subjects_data = ctx.filter(
+        ctx.get("data_A", []),
+        column,
+        value
+    )
+```
+"""
 class DataContext:
     _instance = None
 
