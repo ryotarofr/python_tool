@@ -18,7 +18,7 @@ def main():
     
     # RDBからデータを取得することを想定しているので
     # List[Dict[...]] や Dict[...] のような型となる
-    data_A = [{"column_A": "hoge", ...}{...}] # もしくは {"column_A": "hoge", ...}
+    data_A = [{"column_A": "hoge", ...},{...}] # もしくは {"column_A": "hoge", ...}
     
     # コンテキストにセット
     ctx.set("data_A", data_A)
@@ -32,11 +32,12 @@ def main():
     # filter
     column = (column_A,)
     value = ("hoge",)
-    subjects_data = ctx.filter(
+    records = ctx.filter(
         ctx.get("data_A", []),
         column,
         value
     )
+    print(records) # [{"column_A": "hoge", ...},{...}]
 ```
 """
 class DataContext:
