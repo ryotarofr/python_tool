@@ -13,7 +13,7 @@ from collections.abc import Iterable
 ```py
 ctx = DataContext()
 def main():
-    # グローバルで初期化した場合はここで動的確保データをリセットすることを推奨
+    # DataContextクラスをグローバルでインスタンス化した場合はここで動的確保データをリセットすることを推奨
     ctx.deinit()
     
     # RDBからデータを取得することを想定しているので
