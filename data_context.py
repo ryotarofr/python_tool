@@ -24,13 +24,13 @@ def main():
     ctx.set("data_A", data_A)
 
     # find
-    column = (column_A,)
+    column = ("column_A",)
     value = ("hoge",)
     record = ctx.find(ctx.get("data_A"), column, value)
     print(record) # {"column_A": "hoge", ...}
 
     # filter
-    column = (column_A,)
+    column = ("column_A",)
     value = ("hoge",)
     records = ctx.filter(
         ctx.get("data_A", []),
